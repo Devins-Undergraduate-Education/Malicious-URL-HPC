@@ -1,12 +1,17 @@
-# Malicious URL ML Script
+# Malicious URL ML Pipeline
 
-This repository contains a refactored machine learning script optimized for high-performance computing (HPC) environments and a baseline script for local execution. The script performs the following tasks:
+This repository implements an automated ML pipeline for analyzing malicious URLs. The code is refactored for ease of use, modularity, and automation. The project includes:
 
-- **Parallel Feature Extraction:** Extracts features from URLs using all available CPU cores.
-- **Data Preprocessing:** Loads and preprocesses a malicious URL dataset.
-- **Model Training and Evaluation:** Trains and evaluates multiple machine learning models (LDA, Logistic Regression, SVM, Random Forest) concurrently.
-- **Non-interactive Plotting:** Saves all visualizations to files for HPC environments where interactive displays are not available.
-- **Energy & CO₂ Tracking:** Optionally tracks energy and CO₂ emissions using CodeCarbon.
+- **Automated Data Preprocessing:**  
+  Loads, validates, and preprocesses the malicious URL dataset.
+- **URL Feature Extraction:**  
+  Modularized functions to extract enhanced features from each URL.
+- **Multi-Model Training & Evaluation:**  
+  Trains and evaluates several machine learning algorithms (LDA, Logistic Regression, SVM, Random Forest) concurrently.
+- **Automated Visualization & Reporting:**  
+  Creates and saves plots for feature correlations, model confusion matrices, and more.
+- **Energy & CO₂ Tracking:**  
+  Optionally tracks and reports energy and CO₂ emissions using CodeCarbon.
 
 ## Prerequisites
 
@@ -27,7 +32,7 @@ Make sure you have [Conda](https://docs.conda.io/en/latest/) installed before pr
 
 Clone this repository to your local machine:
 
-```bash
+```
 git clone https://github.com/dfromond3/Malicious-URL-HPC.git
 cd Malicious-URL-HPC
 ```
@@ -36,7 +41,7 @@ cd Malicious-URL-HPC
 
 Create a new Conda environment with the desired Python version:
 
-```bash
+```
 conda create -n ml_env python=3.10
 conda activate ml_env
 ```
@@ -76,7 +81,7 @@ cd Malicious-URL-HPC
 
 ### 2. Create and Activate a Conda Environment
 
-Create a new Conda environment with the desired Python version using a symlink:
+Create a new Conda environment with the desired Python version using a symlink (for example):
 
 ```
 mv ~/.conda /storage/ice1/1/7/dfromond3/.conda
