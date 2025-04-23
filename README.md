@@ -60,12 +60,17 @@ To run the script, execute:
 ```
 python app.py
 ```
+> [!WARNING]  
+> The script `app.py` assumes the user's `scratch` directory (where Conda is set-up) is `/storage/ice1/1/7/{USER}`. If this is not accurate, please update the `BASE_STORAGE` constant within `app.py`.
 
 ### 6. Run the User-Interface
 
 - Navigate to the local host as displayed in the terminal output. (e.x. http://111.0.0.1:5001)
 - Log-In to the UI with your Georgia Tech username/password
 - Upload `malicious_phish.csv` to the User-Interface and select `Submit Job`
+
+> [!NOTE]  
+> To halt execution of the script and User-Interface, enter `CTRL+C` into the terminal. 
 
 ### 7. Obtaining Results
 
