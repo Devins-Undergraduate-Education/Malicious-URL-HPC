@@ -73,7 +73,9 @@ python app.py
 - Within the `scratch` folder, navigate into the `Malicious-URL-HPC` folder
 
 Plots and emissions created by `intensive_ml_model_hpc.py` will be available in the `plots` folder. 
+
 Terminal outputs created by `intensive_ml_model_hpc.py` will be available in the `output-[DATE].out` files.
+
 Any errors during the execution of the script(s) will be available in the `error-[DATE].err` files.
 
 The script has finished execution when the `State` on the User-Interface for all `JobID`s are `COMPLETED`. Results will continue to populate into the above folders and files until the process has finished.
