@@ -18,22 +18,15 @@ This repository implements an automated ML pipeline for analyzing malicious URLs
 Make sure you have [Conda](https://docs.conda.io/en/latest/) installed before proceeding. The following packages are required:
 
 - Python 3.8 (or later)
-- pandas
-- numpy
-- matplotlib
-- seaborn
-- scikit-learn
-- joblib (for HPC only)
-- codecarbon (must pip install)
 
-## Setup Instructions for Local Computing
+## Setup Instructions for HPC Pipeline
 
 ### 1. Clone the Repository
 
 Clone this repository to your local machine:
 
 ```
-git clone https://github.com/dfromond3/Malicious-URL-HPC.git
+git clone -b UI_Dev https://github.com/Devins-Undergraduate-Education/Malicious-URL-HPC
 cd Malicious-URL-HPC
 ```
 
@@ -42,83 +35,45 @@ cd Malicious-URL-HPC
 Create a new Conda environment with the desired Python version:
 
 ```
-conda create -n ml_env python=3.10
-conda activate ml_env
+conda create -n hpc_app python=3.8 -y
+conda activate hpc_app
 ```
 
 ### 3. Install Required Dependencies
 
-Using Conda for most packages:
+Using Conda for dependency installation:
 ```
-conda install numpy scipy scikit-learn matplotlib pandas seaborn -c conda-forge
+conda install flask paramiko python-dotenv -c conda-forge -y
 ```
-
-Using pip for CodeCarbon:
-```
-pip install codecarbon
-```
-
 Download the [Kaggle Dataset](https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset) and save it as _malicious_phish.csv_ in the same folder as the Python script.
 
-### 4. Running the Script
+### 4. Create a SECRET_KEY
+
+Create a `.env` file with a random 32-byte token:
+```
+python -c "import secrets; print('SECRET_KEY=' + secrets.token_hex(32))" > .env
+```
+
+### 5. Running the Script
 
 To run the script, execute:
 ```
-python intensive_ml_model.py
-```
-###
-
-## Setup Instructions for HPC Computing
-
-### 1. Clone the Repository
-
-Clone this repository to your desired HPC directory:
-
-```bash
-git clone https://github.com/dfromond3/Malicious-URL-HPC.git
-cd Malicious-URL-HPC
+python app.py
 ```
 
-### 2. Create and Activate a Conda Environment
+### 6. Run the User-Interface
 
-Create a new Conda environment with the desired Python version using a symlink (for example):
+- Navigate to the local host as displayed in the terminal output. (e.x. http://111.0.0.1:5001)
+- Log-In to the UI with your Georgia Tech username/password
+- Upload `malicious_phish.csv` to the User-Interface and select `Submit Job`
 
-```
-mv ~/.conda /storage/ice1/1/7/dfromond3/.conda
-ln -s /storage/ice1/1/7/dfromond3/.conda ~/.conda
+### 7. Obtaining Results
 
-module load anaconda3
-conda create --name hpc_env python=3.8 -y
-conda activate hpc_env
-```
+- Navigate to the `Files` tab on [PACE Open On-Demand](https://ondemand-ice.pace.gatech.edu/)
+- Within the `scratch` folder, navigate into the `Malicious-URL-HPC` folder
 
-### 3. Install Required Dependencies
+Plots and emissions created by `intensive_ml_model_hpc.py` will be available in the `plots` folder. 
+Terminal outputs created by `intensive_ml_model_hpc.py` will be available in the `output-[DATE].out` files.
+Any errors during the execution of the script(s) will be available in the `error-[DATE].err` files.
 
-Using Conda for most packages:
-```
-conda install -c conda-forge pandas numpy matplotlib seaborn scikit-learn joblib -y
-```
-
-Using pip for CodeCarbon:
-```
-pip install codecarbon
-```
-
-Download the [Kaggle Dataset](https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset) and save it as _malicious_phish.csv_ in the same folder as the Python script.
-
-### 4. Running the Script
-
-First ensure a job has started. To start a job, please execute one of the following (for example):
-
-```
-salloc -N1 --ntasks-per-node=4 -t1:00:00
-salloc -N2 --ntasks-per-node=4 -t1:00:00
-salloc --gres=gpu:H100:1 --ntasks-per-node=3
-salloc --gres=gpu:H100:2 --ntasks-per-node=1
-```
-For documentation on how to start a job, please refer to [this webpage](https://gatech.service-now.com/home?id=kb_article_view&sysparm_article=KB0042096).
-
-To run the script after the job has started:
-```
-srun python intensive_ml_model_hpc.py
-```
+The script has finished execution when the `State` on the User-Interface for all `JobID`s are `COMPLETED`. Results will continue to populate into the above folders and files until the process has finished.
