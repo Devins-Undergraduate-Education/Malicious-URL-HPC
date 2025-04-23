@@ -45,7 +45,7 @@ Using Conda for dependency installation:
 ```
 conda install flask paramiko python-dotenv -c conda-forge -y
 ```
-Download the [Kaggle Dataset](https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset) and save it as _malicious_phish.csv_ in the same folder as the Python script.
+Download the [Kaggle Dataset](https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset) and save it as _malicious_phish.csv_ in an accessable folder.
 
 ### 4. Create a SECRET_KEY
 
