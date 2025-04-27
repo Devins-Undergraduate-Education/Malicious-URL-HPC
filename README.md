@@ -26,7 +26,7 @@ Make sure you have [Conda](https://docs.conda.io/en/latest/) installed before pr
 Clone this repository to your local machine:
 
 ```
-git clone -b UI_Dev https://github.com/Devins-Undergraduate-Education/Malicious-URL-HPC
+git clone -b UI_Dev https://github.com/Devins-Undergraduate-Education/Malicious-URL-HPC.git
 cd Malicious-URL-HPC
 ```
 
