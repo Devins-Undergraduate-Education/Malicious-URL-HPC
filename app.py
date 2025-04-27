@@ -93,7 +93,7 @@ def setup_hpc_environment(username, password=None, pkey_path=None):
     eval "$(conda shell.bash hook)"
     conda env list | grep -q hpc_env || conda create --name hpc_env python=3.8 -y
     conda activate hpc_env
-    conda install -c conda-forge pandas numpy matplotlib seaborn scikit-learn joblib -y
+    conda install pandas numpy matplotlib seaborn scikit-learn joblib -y
     pip install codecarbon
     """
     out, err = execute_ice_command(username, password, pkey_path, script)
