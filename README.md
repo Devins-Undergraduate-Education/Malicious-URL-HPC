@@ -70,7 +70,10 @@ python app.py
 - Upload `malicious_phish.csv` to the User-Interface and select `Submit Job`
 
 > [!NOTE]  
-> To halt execution of the script and User-Interface, enter `CTRL+C` into the terminal. 
+> To halt execution of the script and User-Interface, enter `CTRL+C` into the terminal.
+
+> [!TIP]
+> Depending on HPC configurations, model usage, or the dataset, more memory may be needed. To allocate more memory, increase the `SBATCH_MEMORY` variable in 2GB increments within the `app.py` file. 
 
 ### 7. Obtaining Results
 
